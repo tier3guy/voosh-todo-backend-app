@@ -13,3 +13,5 @@ export const COOKIE_NAME = process.env.COOKIE_NAME!;
 export const users: {
     [key: string]: { id: string; username: string; password: string };
 } = {};
+
+export const MONGO_DB_HOST = process.env.DB_HOST!;
