@@ -20,6 +20,7 @@ export default async function signupController(req, res) {
     }
     catch (error) {
         res.status(401).send("Error creating user");
+        console.log(error);
     }
 }
 //# sourceMappingURL=signup.controller.js.map

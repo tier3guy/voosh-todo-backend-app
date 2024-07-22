@@ -26,5 +26,6 @@ export default async function signupController(req: Request, res: Response) {
         res.status(201).send("User created successfully");
     } catch (error) {
         res.status(401).send("Error creating user");
+        console.log(error);
     }
 }

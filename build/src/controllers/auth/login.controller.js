@@ -1,11 +1,11 @@
 import { comparePassword, generateToken, setCookie } from "../../utils/auth.js";
-import { users } from "../../../constants.js";
+import User from "../../models/users.model.js";
 export default async function loginController(req, res) {
-    const { username, password } = req.body;
-    if (!username || !password) {
+    const { email, password } = req.body;
+    if (!email || !password) {
         return res.status(400).send("Username and password are required");
     }
-    const user = users[username];
+    const user = await User.findOne({ email });
     if (!user) {
         return res.status(401).send("Invalid credentials");
     }
