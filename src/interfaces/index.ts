@@ -16,3 +16,7 @@ export interface ITodo extends Document {
     createdAt: Date;
     updatedAt: Date;
 }
+
+export interface IJwtPayload {
+    id: string;
+}

@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.js";
+import todoRoutes from "./routes/todo.js";
 import authenticate from "./middlewares/authenticate.js";
 import { connectToDBDriver } from "./db/index.js";
 
@@ -16,8 +17,6 @@ connectToDBDriver();
 
 // Routes
 app.use("/api/auth", authRoutes);
-app.get("/protected", authenticate, (req, res) => {
-    res.send("This is a protected route");
-});
+app.use("/api/todo", authenticate, todoRoutes);
 
 export default app;
