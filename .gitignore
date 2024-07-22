@@ -1,6 +1,5 @@
 # directories
 node_modules
-dist
 
 # environments
 .env
