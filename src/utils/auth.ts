@@ -25,7 +25,6 @@ export const setCookie = (res: Response, token: string): void => {
 
     res.cookie(COOKIE_NAME, token, {
         httpOnly: true,
-        secure: true,
         sameSite: "none",
         expires: oneDayFromNow,
     });
