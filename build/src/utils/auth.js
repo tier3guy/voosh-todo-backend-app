@@ -14,7 +14,8 @@ export const comparePassword = async (password, hashedPassword) => {
 export const setCookie = (res, token) => {
     res.cookie(COOKIE_NAME, token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
+        secure: true,
+        sameSite: "none",
     });
 };
 export const clearCookie = (res) => {

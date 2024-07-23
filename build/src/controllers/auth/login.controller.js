@@ -19,6 +19,7 @@ export default async function loginController(req, res) {
         res.status(200).send("Logged in successfully");
     }
     catch (error) {
+        console.log(error);
         res.status(500).send("Internal server error");
     }
 }

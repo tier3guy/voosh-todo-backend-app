@@ -21,8 +21,10 @@ export default async function loginController(req: Request, res: Response) {
 
         const token = generateToken(user.id);
         setCookie(res, token);
+
         res.status(200).send("Logged in successfully");
     } catch (error) {
+        console.log(error);
         res.status(500).send("Internal server error");
     }
 }
