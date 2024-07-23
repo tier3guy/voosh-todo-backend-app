@@ -15,7 +15,6 @@ export const setCookie = (res, token) => {
     const oneDayFromNow = new Date(Date.now() + 24 * 60 * 60 * 1000);
     res.cookie(COOKIE_NAME, token, {
         httpOnly: true,
-        secure: true,
         sameSite: "none",
         expires: oneDayFromNow,
     });
