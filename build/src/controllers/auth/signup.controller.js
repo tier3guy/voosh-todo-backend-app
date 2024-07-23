@@ -2,9 +2,11 @@ import { hashPassword } from "../../utils/auth.js";
 import User from "../../models/users.model.js";
 export default async function signupController(req, res) {
     try {
-        const { email, password } = req.body;
-        if (!email || !password) {
-            return res.status(400).send("Username and password are required");
+        const { email, password, fname, lname } = req.body;
+        if (!email || !password || !fname) {
+            return res
+                .status(400)
+                .send("First name, email and password are required");
         }
         const ifEmailAlreadyExists = await User.findOne({ email });
         if (ifEmailAlreadyExists) {
@@ -12,6 +14,8 @@ export default async function signupController(req, res) {
         }
         const hashedPassword = await hashPassword(password);
         const user = new User({
+            fname,
+            lname,
             email,
             password: hashedPassword,
         });
