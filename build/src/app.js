@@ -8,7 +8,9 @@ import authenticate from "./middlewares/authenticate.js";
 import { connectToDBDriver } from "./db/index.js";
 const app = express();
 // Middlewares
-app.use(cors());
+app.use(cors({
+    origin: ["http://localhost:3000", "https://localhost:3000"],
+}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 // Connecting to db
