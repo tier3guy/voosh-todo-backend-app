@@ -21,11 +21,13 @@ export const comparePassword = async (
 };
 
 export const setCookie = (res: Response, token: string): void => {
+    const oneDayFromNow = new Date(Date.now() + 24 * 60 * 60 * 1000);
+
     res.cookie(COOKIE_NAME, token, {
         httpOnly: true,
         secure: true,
         sameSite: "none",
-        maxAge: 24 * 60 * 60 * 1000,
+        expires: oneDayFromNow,
     });
 };
 
