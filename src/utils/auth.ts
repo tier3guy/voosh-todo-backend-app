@@ -5,7 +5,7 @@ import { Response } from "express";
 import { COOKIE_NAME, JWT_SECRET } from "../../constants.js";
 
 export const generateToken = (userId: string): string => {
-    return jwt.sign({ id: userId }, JWT_SECRET, { expiresIn: "1h" });
+    return jwt.sign({ id: userId }, JWT_SECRET, { expiresIn: "24h" });
 };
 
 export const hashPassword = async (password: string): Promise<string> => {
@@ -25,7 +25,6 @@ export const setCookie = (res: Response, token: string): void => {
 
     res.cookie(COOKIE_NAME, token, {
         httpOnly: true,
-        sameSite: "none",
         expires: oneDayFromNow,
     });
 };
