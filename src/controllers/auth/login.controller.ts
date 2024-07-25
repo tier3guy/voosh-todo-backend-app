@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { comparePassword, generateToken } from "../../utils/auth.js";
+import { comparePassword, generateToken, setCookie } from "../../utils/auth.js";
 import User from "../../models/users.model.js";
 
 export default async function loginController(req: Request, res: Response) {
@@ -20,10 +20,9 @@ export default async function loginController(req: Request, res: Response) {
         }
 
         const token = generateToken(user.id);
+        setCookie(res, token);
 
-        res.status(200).json({
-            auth_token: token,
-        });
+        res.status(200).send("Logged in successfully");
     } catch (error) {
         console.log(error);
         res.status(500).send("Internal server error");

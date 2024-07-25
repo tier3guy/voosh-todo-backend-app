@@ -1,4 +1,4 @@
-import { comparePassword, generateToken } from "../../utils/auth.js";
+import { comparePassword, generateToken, setCookie } from "../../utils/auth.js";
 import User from "../../models/users.model.js";
 export default async function loginController(req, res) {
     try {
@@ -15,9 +15,8 @@ export default async function loginController(req, res) {
             return res.status(401).send("Invalid credentials");
         }
         const token = generateToken(user.id);
-        res.status(200).json({
-            auth_token: token,
-        });
+        setCookie(res, token);
+        res.status(200).send("Logged in successfully");
     }
     catch (error) {
         console.log(error);
