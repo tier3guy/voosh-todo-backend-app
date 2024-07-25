@@ -12,9 +12,7 @@ export default async function updateTaskOrder(req: Request, res: Response) {
         await Todo.deleteMany({ owner: userId });
 
         // Create new tasks
-        const createdTasks = await Todo.insertMany(
-            newTasks.map((task) => ({ ...task, owner: userId }))
-        );
+        const createdTasks = await Todo.insertMany(newTasks);
 
         res.status(200).json(createdTasks);
     } catch (error) {

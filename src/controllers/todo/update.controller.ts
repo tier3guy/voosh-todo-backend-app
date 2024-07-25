@@ -20,7 +20,8 @@ export default async function updateController(req: Request, res: Response) {
             return res.status(404).send("Todo not found");
         }
 
-        res.json(todo);
+        const todos = await Todo.find({ owner: id });
+        res.json(todos);
     } catch (error) {
         console.log(error);
         res.status(500).send("Internal server error");

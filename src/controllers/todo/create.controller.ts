@@ -20,8 +20,9 @@ export default async function createController(req: Request, res: Response) {
             owner: id,
         });
         await todo.save();
+        const todos = await Todo.find({ owner: id });
 
-        res.status(201).json(todo);
+        res.status(201).json(todos);
     } catch (error) {
         console.log(error);
         res.status(500).send("Internal server error");

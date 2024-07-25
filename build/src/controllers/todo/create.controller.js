@@ -14,7 +14,8 @@ export default async function createController(req, res) {
             owner: id,
         });
         await todo.save();
-        res.status(201).json(todo);
+        const todos = await Todo.find({ owner: id });
+        res.status(201).json(todos);
     }
     catch (error) {
         console.log(error);
