@@ -19,7 +19,8 @@ export default async function deleteController(req: Request, res: Response) {
                 );
         }
 
-        res.json({ message: "Todo deleted successfully" });
+        const todos = await Todo.find({ owner: id });
+        res.json(todos);
     } catch (error) {
         console.log(error);
         res.status(500).send("Internal server error");

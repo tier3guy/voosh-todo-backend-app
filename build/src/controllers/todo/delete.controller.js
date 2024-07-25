@@ -11,7 +11,8 @@ export default async function deleteController(req, res) {
                 .status(404)
                 .send("Todo not found or you are not authorized to delete this todo");
         }
-        res.json({ message: "Todo deleted successfully" });
+        const todos = await Todo.find({ owner: id });
+        res.json(todos);
     }
     catch (error) {
         console.log(error);
