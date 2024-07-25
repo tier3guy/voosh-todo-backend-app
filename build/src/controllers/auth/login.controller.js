@@ -1,10 +1,10 @@
-import { comparePassword, generateToken, setCookie } from "../../utils/auth.js";
+import { comparePassword, generateToken } from "../../utils/auth.js";
 import User from "../../models/users.model.js";
 export default async function loginController(req, res) {
     try {
         const { email, password } = req.body;
         if (!email || !password) {
-            return res.status(400).send("Username and password are required");
+            return res.status(400).send("Email and password are required");
         }
         const user = await User.findOne({ email });
         if (!user) {
@@ -15,8 +15,7 @@ export default async function loginController(req, res) {
             return res.status(401).send("Invalid credentials");
         }
         const token = generateToken(user.id);
-        setCookie(res, token);
-        res.status(200).send("Logged in successfully");
+        res.status(200).send({ auth_token: token });
     }
     catch (error) {
         console.log(error);

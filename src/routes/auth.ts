@@ -8,7 +8,7 @@ const router = Router();
 
 router.post("/signup", signupController);
 router.post("/login", loginController);
-router.post("/google-login", googleLoginController);
+router.post("/login-with-google", googleLoginController);
 router.post("/logout", logoutController);
 
 export default router;
