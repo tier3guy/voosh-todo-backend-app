@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { COOKIE_NAME, JWT_SECRET } from "../../constants.js";
 export const generateToken = (userId) => {
-    return jwt.sign({ id: userId }, JWT_SECRET, { expiresIn: "24h" });
+    return jwt.sign({ id: userId }, JWT_SECRET, { expiresIn: "1d" });
 };
 export const hashPassword = async (password) => {
     const salt = await bcrypt.genSalt(10);
@@ -15,6 +15,8 @@ export const setCookie = (res, token) => {
     const oneDayFromNow = new Date(Date.now() + 24 * 60 * 60 * 1000);
     res.cookie(COOKIE_NAME, token, {
         httpOnly: true,
+        secure: true,
+        sameSite: "none",
         expires: oneDayFromNow,
     });
 };

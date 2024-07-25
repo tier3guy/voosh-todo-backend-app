@@ -9,6 +9,7 @@ export default async function authenticate(
     next: NextFunction
 ) {
     const token = req.cookies[COOKIE_NAME];
+
     if (!token) {
         return res.status(401).send("Access denied. No token provided.");
     }
