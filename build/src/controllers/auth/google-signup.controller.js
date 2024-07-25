@@ -6,9 +6,9 @@ export default async function googleSignupController(req, res) {
         if (!email) {
             return res.status(400).send("Email is required");
         }
-        const user = await User.findOne({ email });
-        if (!user) {
-            return res.status(401).send("Invalid credentials");
+        const ifEmailAlreadyExists = await User.findOne({ email });
+        if (ifEmailAlreadyExists) {
+            return res.status(400).send("Email already exists");
         }
         const newUser = new User({
             fname: fname || "null",
