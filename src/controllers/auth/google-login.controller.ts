@@ -2,20 +2,18 @@ import { Request, Response } from "express";
 import { comparePassword, generateToken } from "../../utils/auth.js";
 import User from "../../models/users.model.js";
 
-export default async function loginController(req: Request, res: Response) {
+export default async function googleLoginController(
+    req: Request,
+    res: Response
+) {
     try {
-        const { email, password } = req.body;
-        if (!email || !password) {
-            return res.status(400).send("Email and password are required");
+        const { email } = req.body;
+        if (!email) {
+            return res.status(400).send("Email is required");
         }
 
         const user = await User.findOne({ email });
         if (!user) {
-            return res.status(401).send("Invalid credentials");
-        }
-
-        const isPasswordValid = await comparePassword(password, user.password);
-        if (!isPasswordValid) {
             return res.status(401).send("Invalid credentials");
         }
 

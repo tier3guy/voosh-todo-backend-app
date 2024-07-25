@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { COOKIE_NAME, JWT_SECRET } from "../../constants.js";
+import { JWT_SECRET } from "../../constants.js";
 import { IJwtPayload } from "../interfaces/index.js";
 
 export default async function authenticate(
