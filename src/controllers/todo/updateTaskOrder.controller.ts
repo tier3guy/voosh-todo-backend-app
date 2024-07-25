@@ -2,7 +2,10 @@ import { Request, Response } from "express";
 import Todo from "../../models/todo.model.js";
 import { IJwtPayload } from "../../interfaces/index.js";
 
-export default async function updateTaskOrder(req: Request, res: Response) {
+export default async function updateTaskOrderController(
+    req: Request,
+    res: Response
+) {
     try {
         const user = req.user as IJwtPayload;
         const userId = user.id;
