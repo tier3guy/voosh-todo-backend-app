@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { IJwtPayload } from "../../interfaces/index.js";
 import Todo from "../../models/todo.model.js";
 import { getTodoId } from "../../utils/todo.js";
+import { IJwtPayload } from "../../interfaces/index.js";
 
 export default async function updateController(req: Request, res: Response) {
     try {
