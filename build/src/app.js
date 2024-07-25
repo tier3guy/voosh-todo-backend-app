@@ -9,7 +9,7 @@ import { connectToDBDriver } from "./db/index.js";
 const app = express();
 // Middlewares
 app.use(cors({
-    origin: "https://voosh-todo-app.vercel.app/",
+    origin: "https://voosh-todo-app.vercel.app",
     credentials: true,
 }));
 app.use(bodyParser.json());

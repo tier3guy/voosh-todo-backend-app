@@ -12,7 +12,7 @@ const app = express();
 // Middlewares
 app.use(
     cors({
-        origin: "https://voosh-todo-app.vercel.app/",
+        origin: "https://voosh-todo-app.vercel.app",
         credentials: true,
     })
 );
